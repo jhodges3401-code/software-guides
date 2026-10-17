@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b1220"/><stop offset="1" stop-color="#123b3a"/></linearGradient></defs>
+<rect width="1200" height="630" fill="url(#g)"/>
+<rect x="64" y="60" width="44" height="44" rx="11" fill="#0f766e"/><text x="86" y="91" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="24" fill="#fff" text-anchor="middle">O</text>
+<text x="122" y="91" font-family="Inter,Arial,sans-serif" font-weight="700" font-size="26" fill="#fff">Orvian Market · Software Guides</text>
+<text x="64" y="200" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="58" fill="#fff" letter-spacing="-1.5">Pest control &amp; hood cleaning</text>
+<text x="64" y="270" font-family="Inter,Arial,sans-serif" font-weight="800" font-size="58" fill="#5eead4" letter-spacing="-1.5">software, compared honestly.</text>
+<text x="64" y="328" font-family="Inter,Arial,sans-serif" font-size="25" fill="#c7d2e0">Public pricing · sources linked · checked October 17, 2026</text>
+<g font-family="Inter,Arial,sans-serif">
+<rect x="64" y="378" width="1072" height="196" rx="16" fill="#ffffff"/>
+<path d="M80 378h1040a16 16 0 0 1 16 16v28H64v-28a16 16 0 0 1 16-16z" fill="#0f172a"/>
+<text x="92" y="407" font-size="15" font-weight="700" fill="#fff" letter-spacing="1">SOFTWARE</text><text x="470" y="407" font-size="15" font-weight="700" fill="#fff" letter-spacing="1">PUBLISHED PRICE</text><text x="800" y="407" font-size="15" font-weight="700" fill="#fff" letter-spacing="1">BILLED BY</text>
+<text x="92" y="456" font-size="21" font-weight="700" fill="#0b1220">GorillaDesk</text><text x="470" y="456" font-size="21" fill="#1e293b">from $49/mo</text><text x="800" y="456" font-size="21" fill="#1e293b">route</text>
+<line x1="80" y1="474" x2="1120" y2="474" stroke="#e5e9f0"/>
+<text x="92" y="505" font-size="21" font-weight="700" fill="#0b1220">Pocomos</text><text x="470" y="505" font-size="21" fill="#1e293b">from $109/mo</text><text x="800" y="505" font-size="21" fill="#1e293b">active customers</text>
+<line x1="80" y1="523" x2="1120" y2="523" stroke="#e5e9f0"/>
+<text x="92" y="554" font-size="21" font-weight="700" fill="#0b1220">PestPac · FieldRoutes · Briostack</text><text x="470" y="554" font-size="21" fill="#64748b">not published</text><text x="800" y="554" font-size="21" fill="#64748b">quote only</text>
+</g></svg>
