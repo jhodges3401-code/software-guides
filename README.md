@@ -10,6 +10,7 @@ Live: https://orvianmarketplace.com/software-guides/
 | Pest control software pricing calculator | `pest-control-software-pricing-calculator.html` + `assets/calc.js` |
 | Pesticide application record requirements by state | `pesticide-application-records-by-state.html` |
 | Best hood cleaning software (2026) | `best-hood-cleaning-software.html` |
+| How often must a kitchen hood be cleaned? (NFPA 96 schedule, calculator, printable record) | `hood-cleaning-frequency-requirements.html` |
 | Method and affiliate disclosure | `about.html` |
 
 Rules: public sources only and linked; every page dated; no hands-on testing claimed; no ratings or reviews; no affiliate links yet (disclosure notice on every page, update it if links are added).

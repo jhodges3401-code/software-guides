@@ -4,11 +4,11 @@ CHK = "October 17, 2026"; CHK_ISO = "2026-10-17"
 BASE = "https://orvianmarketplace.com/software-guides/"
 OG = BASE + "assets/og.png"
 E = H.escape
-NAV = [("index.html","Guides"),("best-pest-control-software.html","Best pest control software"),("pest-control-software-pricing-calculator.html","Pricing calculator"),("pesticide-application-records-by-state.html","Records by state"),("best-hood-cleaning-software.html","Hood cleaning"),("about.html","How we compare")]
+NAV = [("index.html","Guides"),("best-pest-control-software.html","Best pest software"),("pest-control-software-pricing-calculator.html","Pricing calculator"),("pesticide-application-records-by-state.html","Records by state"),("best-hood-cleaning-software.html","Hood cleaning"),("hood-cleaning-frequency-requirements.html","Hood schedule"),("about.html","How we compare")]
 
 def page(slug, title, desc, body, ld=None):
     url = BASE + ("" if slug=="index.html" else slug)
-    nav = "".join(f'<a href="{h}"{" aria-current=page" if h==slug else ""}>{E(t)}</a>' for h,t in NAV[1:])
+    nav = "".join(f'<a href="{h}"{" aria-current=page" if h==slug else ""}>{E(t)}</a>' for h,t in NAV[1:] if h!="about.html")
     lds = "".join(f'<script type="application/ld+json">{json.dumps(x)}</script>' for x in (ld or []))
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{E(title)}</title><meta name="description" content="{E(desc)}"><link rel="canonical" href="{url}"><meta name="robots" content="index,follow"><meta name="theme-color" content="#0b1220">
@@ -20,7 +20,7 @@ def page(slug, title, desc, body, ld=None):
 <header class="nav"><div class="w"><a class="brand" href="index.html"><span class="mk" aria-hidden="true">O</span>Software Guides <small>by Orvian Market</small></a><nav aria-label="Guides">{nav}</nav></div></header>
 <div class="disc" role="note"><div class="w"><b>Disclosure:</b> This page has no affiliate links right now. If we add any later, we&rsquo;ll label them and update this notice. No vendor paid to be listed or ranked. <a href="about.html#disclosure">Details</a></div></div>
 <main id="main">{body}</main>
-<footer><div class="w"><div class="fg"><a href="index.html">All guides</a><a href="best-pest-control-software.html">Best pest control software</a><a href="pest-control-software-pricing-calculator.html">Pricing calculator</a><a href="pesticide-application-records-by-state.html">Pesticide records by state</a><a href="best-hood-cleaning-software.html">Hood cleaning software</a><a href="about.html">How we compare</a><a href="https://orvianmarketplace.com/">Orvian Market</a></div>
+<footer><div class="w"><div class="fg"><a href="index.html">All guides</a><a href="best-pest-control-software.html">Best pest control software</a><a href="pest-control-software-pricing-calculator.html">Pricing calculator</a><a href="pesticide-application-records-by-state.html">Pesticide records by state</a><a href="best-hood-cleaning-software.html">Hood cleaning software</a><a href="hood-cleaning-frequency-requirements.html">Hood cleaning schedule (NFPA 96)</a><a href="about.html">How we compare</a><a href="https://orvianmarketplace.com/">Orvian Market</a></div>
 <p>&copy; 2026 Orvian Market. Comparisons are built from vendors&rsquo; public pricing pages and documentation, checked {CHK}. We have not tested these products hands-on. Prices change, so confirm on each vendor&rsquo;s site before you buy. Product names and trademarks belong to their owners; Orvian Market isn&rsquo;t affiliated with or endorsed by any vendor named here. Nothing here is legal advice.</p></div></footer>
 </body></html>'''
 
@@ -256,12 +256,81 @@ def hood_page():
     body += f'''<section class="sec"><div class="w"><h2>Side-by-side comparison</h2><p class="sub">Published prices and positioning from each vendor&rsquo;s own site, checked {CHK}.</p><div class="tw"><table class="t"><thead><tr><th>Software</th><th>Published price</th><th>Free plan / trial</th><th>What it does</th><th>Best for</th><th>Source</th></tr></thead><tbody>{rows}</tbody></table></div>
 <div class="note"><b>Quick take:</b> to try digital NFPA 96 reports for free, start with Stampario&rsquo;s or HoodStamp&rsquo;s free plan. For one app that also schedules and invoices, MyHoodClean has the lowest published all-in-one price. If you mainly want better reports and already invoice in QuickBooks or Jobber, look at HoodCleaningReport.</div></div></section>
 <section class="sec alt"><div class="w nw"><h2>What to check before you choose</h2>
-<h3>Does the report match your AHJ?</h3><p>Fire marshals may adopt a specific NFPA 96 edition. Ask the vendor which edition its report follows and whether you can add local fields and state license numbers.</p>
+<h3>Does the report match your AHJ?</h3><p>Fire marshals may adopt a specific NFPA 96 edition. Ask the vendor which edition its report follows and whether you can add local fields and state license numbers. Our <a href=\"hood-cleaning-frequency-requirements.html\">hood cleaning schedule guide</a> covers the NFPA 96 intervals, tag rules and state licensing examples.</p>
 <h3>Reports only, or the whole business?</h3><p>Report apps (HoodCleaningReport, Stampario, HoodStamp) sit alongside whatever you invoice with. All-in-ones (MyHoodClean, Smart Service, HoodOps) replace your scheduling and billing too.</p>
 <h3>Report limits</h3><p>HoodCleaningReport caps reports per month by plan and sells packs, and Stampario&rsquo;s free plan stops at 5 reports a month. Count your reports in a busy month before you choose.</p></div></section>
 <section class="sec"><div class="w"><h2>How we compared</h2>{METHOD}</div></section>
 <section class="sec alt"><div class="w nw"><h2>FAQ</h2>{faq_block(faq)}</div></section>'''
     return slug, page(slug,title,desc,body,[art_ld(title,desc,slug),faq_ld(faq),crumbs("Hood cleaning software",slug)])
+
+HF_SRC = {
+ "nfpa": ("NFPA 96, 2024 edition, Table 12.4 (as quoted by IKECA)","https://www.ikeca.org/page/IKECAFAQs"),
+ "nfpa_toc": ("NFPA 96, 2024 edition, free preview (table of contents)","https://nfpanorm.com/wp-content/preview/96%202024.pdf"),
+ "nfpa_depth": ("NFPA 96 first-revision report for the 2026 edition (grease depth text)","https://docinfofiles.nfpa.org/files/AboutTheCodes/96/96_A2026_VEN_AAA_FD_FRReport.2.pdf"),
+ "ifc": ("International Fire Code 2021, Section 607.3.3 (UpCodes)","https://up.codes/s/commercial-kitchen-hoods"),
+}
+HF_ST = [
+ ("Massachusetts","Department of Fire Services / State Fire Marshal",
+  "Anyone who cleans or inspects commercial cooking exhaust systems needs a State Fire Marshal certificate of competency. Type 1 (unrestricted, for contractors) requires at least 500 hours of experience; Type 2 is only for owners cleaning their own systems. Since January 1, 2018, hood cleaning companies also need a certificate of registration (Form FP-026A, $60, good for 2 years, one per business location). Labels follow 527 CMR 1.00: 50.5.6.13, and a certificate holder who finds an out-of-compliance system must notify the local fire department within 48 hours. Boston adds its own city registration.",
+  [("Mass.gov: hood cleaning licenses","https://www.mass.gov/how-to/apply-for-commercial-hood-cleaning-and-inspection-licenses"),("Mass.gov: hood cleaning inspections","https://www.mass.gov/info-details/commercial-cooking-exhaust-system-inspections-hood-cleaning")]),
+ ("Utah","Office of the State Fire Marshal",
+  "Kitchen exhaust inspection and cleaning companies must be licensed by the State Fire Marshal under Utah Admin. Code R710-7, and each technician needs a certificate of registration (written exam on NFPA 96 and R710-7; $30 exam plus $40 annual certificate). Contractors must give the owner a completion and deficiency report. The service label has a set format: 5.5 by 4.5 inches, any color except red, with the company&rsquo;s license number, the technician&rsquo;s registration number, the service date punched in, and the next service due.",
+  [("Utah SFM: kitchen exhaust duct cleaning","https://firemarshal.utah.gov/licensing-and-certification/kitchen-exhaust-duct-cleaning-systems/"),("Utah SFM service label sample (PDF)","https://firemarshal.utah.gov/wp-content/uploads/Hood-Service-Label-w-Instructions.pdf")]),
+ ("Nevada","State Fire Marshal Division",
+  "Cleaning Type 1 hood and duct systems needs a State Fire Marshal license for the firm (with a stick-on label approved under NAC 477.790) and a certificate of registration for each technician, who must pass an exam with at least 75%. Uncertified employees may help only while a certified person is on site supervising and fills out the certificate. The firm also needs a local business license where it works.",
+  [("NAC 477.770","https://www.law.cornell.edu/regulations/nevada/NAC-477-770"),("NAC 477.300","https://www.law.cornell.edu/regulations/nevada/NAC-477-300")]),
+ ("Portland, Oregon (city)","Portland Fire &amp; Rescue",
+  "Anyone who cleans commercial hood and ventilation systems in Portland, contractor or in-house, needs a Fire Marshal Certificate of Fitness (Title 31, 31.20.110). Policy FIR-8.08 calls for inspection at least every 6 months (infrequent cooking, such as a lodge or church, can be extended to at most 2 years), cleaning to bare metal, and a label in the kitchen showing the date, the company and the technician&rsquo;s certificate number, and any areas not cleaned. The owner keeps reports on site for the Fire Marshal.",
+  [("Portland FIR-8.08","https://www.portland.gov/policies/portland-fire-and-rescue/fixed-portable-fire-extinguishing-systems-equipment/fir-808")]),
+]
+def hood_freq_page():
+    slug="hood-cleaning-frequency-requirements.html"
+    title="How Often Must a Commercial Kitchen Hood Be Cleaned? NFPA 96 Schedule (2026)"
+    desc=f"The NFPA 96 and International Fire Code inspection schedule for kitchen exhaust hoods (monthly, quarterly, semiannual, annual), grease depth limits, tag and record rules, state license examples and a free service record. Checked {CHK}."
+    def src(k): n,u=HF_SRC[k]; return f'<a href="{u}" rel="noopener" target="_blank">{n}</a>'
+    sched=[("Solid fuel cooking (wood, charcoal)","Monthly","1 month"),
+           ("High volume: 24-hour cooking, charbroiling, wok cooking","Quarterly","3 months"),
+           ("Moderate volume (most restaurants)","Semiannually","6 months (&ldquo;all other cooking operations&rdquo;)"),
+           ("Low volume: churches and places of worship, day camps, seasonal businesses, senior centers","Annually","12 months")]
+    srows="".join(f"<tr><td>{a}</td><td><b>{b}</b></td><td>{c}</td></tr>" for a,b,c in sched)
+    strows="".join(f'<tr id="{sid(s[0].split(" (")[0].split(",")[0])}"><td>{s[0]}</td><td>{s[1]}</td><td>{s[2]}</td><td class="src">'+"<br>".join(f'<a href="{u}" rel="noopener" target="_blank">{n}</a>' for n,u in s[3])+'</td></tr>' for s in HF_ST)
+    flds=["Restaurant / site name and address","Date and time of service","Service type: inspection, cleaning, or both","Company name, address and phone","Technician name and license / certificate number","Cooking type and schedule used (monthly / quarterly / semiannual / annual)","Components inspected: hood, filters, plenum, ducts, access panels, fan","Grease depth readings and where measured","Components cleaned (to bare metal?)","Areas NOT cleaned or inaccessible, and why","Deficiencies found (e.g. missing access panels, fan hinge, damaged filters)","Before / after photos taken (Y/N)","Next service due","Tag / label applied on hood, old tag removed (Y/N)","Owner or manager signature, copy given (Y/N)"]
+    form="".join(f"<tr><th>{E(x)}</th><td></td></tr>" for x in flds)
+    faq=[("How often does a restaurant hood have to be cleaned?","The codes schedule <b>inspections</b>, and cleaning happens when an inspection finds grease buildup. NFPA 96 (2024 edition, Table 12.4) sets the inspection schedule at monthly for solid fuel cooking, quarterly for high-volume cooking (24-hour, charbroiling, wok), semiannually for moderate volume, and annually for low volume (churches, day camps, seasonal businesses, senior centers). The International Fire Code uses the same intervals. In practice, a busy kitchen ends up cleaned on roughly that schedule."),
+         ("How much grease is too much?","NFPA 96 uses a depth gauge comb. Surfaces with 0.078 in. (2,000 &micro;m) of grease, or a fan housing with 0.125 in. (3,175 &micro;m), must be cleaned. That&rsquo;s the wording in NFPA&rsquo;s published revision report for the next edition, linked below."),
+         ("Who decides which category my kitchen is in?","Your Authority Having Jurisdiction (AHJ), usually the local fire marshal. The IFC lets the fire code official approve a different interval, and some cities, like Portland, publish their own policy. Ask your fire department if you&rsquo;re unsure."),
+         ("What has to go on the hood sticker?","Under IFC 2021 Section 607.3.3.3.1, the tag must show the service provider&rsquo;s name, address, phone number and the date of service, in a conspicuous spot, with older tags covered or removed. Some states prescribe the label in detail. Utah, for example, specifies its size, color and contents."),
+         ("Do I need a license to clean hoods?","It depends on where you work. Massachusetts, Utah and Nevada require state licensing, and Portland, Oregon requires a city certificate. Many states have no hood-specific license, and the work is governed by the local fire code instead. Check with your state fire marshal and your city."),
+         ("Is this legal advice?",f"No. It&rsquo;s a plain-English summary of NFPA 96, the International Fire Code and the official pages linked here, checked {CHK}. Your jurisdiction may adopt a different edition or add rules, and the official text is what counts.")]
+    body = hero("Free guide &middot; kitchen exhaust cleaning","How often must a commercial kitchen hood be cleaned?",
+      "The NFPA 96 and International Fire Code inspection schedule in one table, the grease depth that triggers a cleaning, what records and tags the code asks for, and four places that license hood cleaners. Plus a free next-service calculator and a printable service record.",
+      [f"Checked {CHK}","Official sources linked","Free calculator + record","Not legal advice"],
+      [("schedule","The schedule"),("calc","Next service due"),("grease","When to clean"),("records","Records and tags"),("states","Licensing examples"),("template","Printable record"),("faq","FAQ")])
+    body += f'''<section class="sec" id="schedule"><div class="w"><h2>The inspection schedule</h2><p class="sub">Both codes set the minimum interval for <b>inspecting</b> the whole exhaust system for grease buildup. Inspection results decide whether it gets cleaned.</p>
+<div class="tw"><table class="t"><thead><tr><th>Type or volume of cooking</th><th>NFPA 96 (2024), Table 12.4</th><th>IFC 2021, Table 607.3.3.1</th></tr></thead><tbody>{srows}</tbody></table></div>
+<div class="note"><b>Sources:</b> {src("nfpa")}; {src("ifc")}. NFPA 96 says inspections must be done by a &ldquo;properly trained, qualified, and certified person(s) acceptable to the authority having jurisdiction.&rdquo; The IFC lets the fire code official approve other intervals.</div></div></section>
+<section class="sec alt" id="calc"><div class="w"><h2>When is the next service due?</h2><p class="sub">Pick the cooking type and the last service date. This uses the code minimums above; your AHJ or a dirty system can call for sooner.</p>
+<div class="calc"><form class="cin" onsubmit="return false" aria-label="Kitchen details">
+<label for="ct">Cooking type</label><select id="ct"><option value="1">Solid fuel (wood or charcoal)</option><option value="3">High volume: 24-hour, charbroil, wok</option><option value="6" selected>Moderate volume (most restaurants)</option><option value="12">Low volume: church, day camp, seasonal, senior center</option></select>
+<label for="ld">Last inspection or cleaning</label><input id="ld" type="date">
+<p class="hint">Leave blank to use today.</p></form>
+<div><div class="res" id="hout" aria-live="polite"></div></div></div></div></section>
+<script>(function(){{var ct=document.getElementById('ct'),ld=document.getElementById('ld'),o=document.getElementById('hout');var nm={{1:'monthly',3:'quarterly',6:'semiannual',12:'annual'}};function f(d){{return d.toLocaleDateString('en-US',{{year:'numeric',month:'long',day:'numeric'}})}}function u(){{var m=+ct.value,b=ld.value?new Date(ld.value+'T12:00:00'):new Date();var n=new Date(b);n.setMonth(n.getMonth()+m);var t=new Date();t.setHours(0,0,0,0);var days=Math.round((n-t)/864e5);var st=days<0?'Overdue by '+(-days)+' days':days+' days from today';var h='<div class="row best"><div><div class="nm">Next inspection due</div><div class="pl">'+nm[m]+' schedule, every '+m+' month'+(m>1?'s':'')+'</div></div><div class="amt">'+f(n)+'<small>'+st+'</small></div></div>';var y=[];var c=new Date(b);for(var i=0;i<Math.max(1,Math.round(12/m));i++){{c=new Date(c);c.setMonth(c.getMonth()+m);y.push(f(c))}}h+='<div class="row"><div><div class="nm">Next 12 months</div><div class="pl">'+y.join(' &middot; ')+'</div></div><div class="amt">'+y.length+'<small>visits a year</small></div></div>';o.innerHTML=h}}ct.addEventListener('change',u);ld.addEventListener('input',u);u()}})();</script>
+<section class="sec" id="grease"><div class="w nw"><h2>When does a hood have to be cleaned?</h2><p>When the inspection finds grease. Under the IFC, if hoods, grease-removal devices, fans, ducts or other parts have an accumulation of grease, they &ldquo;shall be cleaned in accordance with ANSI/IKECA C10&rdquo; (Section 607.3.3.2). NFPA 96 gives a measurable trigger: place a <b>grease depth gauge comb</b> on the surface, and clean when it reads <b>0.078 in. (2,000 &micro;m)</b> on a surface or <b>0.125 in. (3,175 &micro;m)</b> in a fan housing.</p>
+<div class="note w2"><b>Source for the depth limits:</b> {src("nfpa_depth")}, which shows the current text alongside the proposed renumbering. Section titles for the 2024 edition are in the {src("nfpa_toc")}.</div></div></section>
+<section class="sec alt" id="records"><div class="w nw"><h2>Records and tags the fire code asks for</h2>
+<h3>Records (IFC 2021, 607.3.3.3)</h3><p>After every inspection, record the individual and company that did it, a description of the inspection, and when it happened. After every cleaning, record the individual and company and when it happened. Records must be completed after each visit and kept.</p>
+<h3>Tags (IFC 2021, 607.3.3.3.1)</h3><p>When the hood or duct system is inspected, leave a tag in a conspicuous location with the service provider&rsquo;s name, address, phone number and date of service. Cover or remove older tags.</p>
+<h3>Reports to the owner</h3><p>Several jurisdictions go further. Utah requires a completion and deficiency report for the owner, and Portland requires the label to list any areas not cleaned and the owner to keep reports on site.</p></div></section>
+<section class="sec" id="states"><div class="w"><h2>Licensing examples: four places with their own rules</h2><p class="sub">Not every state licenses hood cleaners. These four publish specific requirements, checked {CHK}. Elsewhere, ask your state fire marshal and the city fire department.</p>
+<div class="tw"><table class="t"><thead><tr><th>Where</th><th>Agency</th><th>What it requires (summary)</th><th>Official source</th></tr></thead><tbody>{strows}</tbody></table></div></div></section>
+<section class="sec alt" id="template"><div class="w nw"><h2>Free printable hood service record</h2><p class="sub">One sheet per visit. It covers the IFC record and tag fields plus the details owners and fire marshals usually ask for. Add your state&rsquo;s license fields.</p>
+<p class="noprint"><button class="btn" type="button" onclick="window.print()">Print or save as PDF</button></p>
+<div class="form"><h3>Kitchen exhaust inspection / cleaning record</h3><table>{form}</table></div>
+<p style="font-size:13px;color:var(--mute)">Template by Orvian Market. Free to copy and use. Not legal advice; your jurisdiction&rsquo;s rules are what count.</p></div></section>
+<section class="sec" id="software"><div class="w nw"><h2>Doing this in an app instead</h2><p>Hood cleaning apps fill in the record, take photos, track grease readings and schedule the next visit from the cooking type. Free options exist: Stampario&rsquo;s free plan covers 5 reports a month and HoodStamp lists 3 free certificates a month. Paid all-in-ones such as MyHoodClean ($49.99/mo) also schedule and invoice. See the <a href="best-hood-cleaning-software.html">hood cleaning software comparison</a> for prices and sources.</p></div></section>
+<section class="sec alt" id="faq"><div class="w nw"><h2>FAQ</h2>{faq_block(faq)}</div></section>'''
+    return slug, page(slug,title,desc,body,[art_ld(title,desc,slug),faq_ld(faq),crumbs("Hood cleaning frequency",slug)])
 
 def about_page():
     slug="about.html"; title="How Orvian Market Software Guides Compares Software"; desc="Method, sources and affiliate disclosure for Orvian Market Software Guides."
@@ -279,13 +348,14 @@ def index_page():
     hubs=[("Pest control","best-pest-control-software.html","Best pest control software for small operators (2026)","GorillaDesk, Pocomos, Jobber, Housecall Pro, QuoteIQ, PestPac, FieldRoutes and Briostack, compared on public pricing."),
           ("Free tool","pest-control-software-pricing-calculator.html","Pest control software pricing calculator","Enter your routes, users and customers to see five vendors&rsquo; list prices side by side."),
           ("Free guide","pesticide-application-records-by-state.html","Pesticide application records by state","Retention periods and required fields for 12 states, with official sources and a printable log."),
-          ("Hood cleaning","best-hood-cleaning-software.html","Best hood cleaning software (2026)","Seven NFPA 96 report and business apps, free plans included.")]
+          ("Hood cleaning","best-hood-cleaning-software.html","Best hood cleaning software (2026)","Seven NFPA 96 report and business apps, free plans included."),
+          ("Free guide","hood-cleaning-frequency-requirements.html","How often must a kitchen hood be cleaned?","The NFPA 96 and fire code schedule, grease depth limits, tag rules, a next-service calculator and a printable record.")]
     hb="".join(f'<a class="hub" href="{h}"><span class="k">{k}</span><h3>{E(t)}</h3><p>{d}</p></a>' for k,h,t,d in hubs)
     body = hero("Orvian Market &middot; Software Guides","Software guides for pest control and hood cleaning businesses","Honest, dated comparisons built from vendors&rsquo; public pricing and docs. No sponsored rankings, no fake reviews, and every number links to its source.",[f"Checked {CHK}","Sources on every row","Free tools"])
     body += f'<section class="sec"><div class="w"><h2>Guides</h2><p class="sub">Start with your trade.</p><div class="hubs">{hb}</div></div></section><section class="sec alt"><div class="w"><h2>How we compare</h2>{METHOD}<p style="margin-top:16px"><a href="about.html">Read the full method and disclosure &rarr;</a></p></div></section>'
     return slug, page(slug,title,desc,body,[{"@context":"https://schema.org","@type":"CollectionPage","name":title,"url":BASE,"description":desc}])
 
-pages=[index_page(),best_page(),calc_page(),records_page(),hood_page(),about_page()]
+pages=[index_page(),best_page(),calc_page(),records_page(),hood_page(),hood_freq_page(),about_page()]
 for s,h in pages: open("out/"+s,"w").write(h)
 sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f'<url><loc>{BASE}{"" if s=="index.html" else s}</loc><lastmod>{CHK_ISO}</lastmod></url>\n' for s,_ in pages)+'</urlset>\n'
 open("out/sitemap.xml","w").write(sm)
