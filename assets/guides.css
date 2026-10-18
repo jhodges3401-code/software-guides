@@ -58,3 +58,7 @@ footer{border-top:1px solid var(--line);padding:30px 0 40px;color:var(--mute);fo
 @media(max-width:980px){.nav nav{display:none}}
 @media(max-width:860px){.calc{grid-template-columns:1fr}.cin{position:static}}
 @media print{.nav,.disc,.hero,footer,.noprint,.sec:not(#template){display:none!important}#template{padding:0}body{font-size:12px}}
+.hero .ans{max-width:780px;margin:4px 0 22px;padding:16px 20px;border-left:4px solid #5eead4;background:rgba(255,255,255,.07);border-radius:0 12px 12px 0}
+.hero .ans p{margin:0;font-size:18px;line-height:1.55;color:#fff}.hero .ans b{color:#fff}
+.hero .ans p.ans-k{font-size:12.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#5eead4;margin:0 0 6px}
+@media print{.hero .ans{border-left-color:#0f766e;background:none}.hero .ans p{color:#000}}
