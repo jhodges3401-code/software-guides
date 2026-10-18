@@ -20,7 +20,7 @@ def page(slug, title, desc, body, ld=None):
 <header class="nav"><div class="w"><a class="brand" href="index.html"><span class="mk" aria-hidden="true">O</span>Software Guides <small>by Orvian Market</small></a><nav aria-label="Guides">{nav}</nav></div></header>
 <div class="disc" role="note"><div class="w"><b>Disclosure:</b> This page has no affiliate links right now. If we add any later, we&rsquo;ll label them and update this notice. No vendor paid to be listed or ranked. <a href="about.html#disclosure">Details</a></div></div>
 <main id="main">{body}</main>
-<footer><div class="w"><div class="fg"><a href="index.html">All guides</a><a href="best-pest-control-software.html">Best pest control software</a><a href="pest-control-software-pricing-calculator.html">Pricing calculator</a><a href="pesticide-application-records-by-state.html">Pesticide records by state</a><a href="best-hood-cleaning-software.html">Hood cleaning software</a><a href="hood-cleaning-frequency-requirements.html">Hood cleaning schedule (NFPA 96)</a><a href="how-to-start-a-hood-cleaning-business.html">Start a hood cleaning business</a><a href="about.html">How we compare</a><a href="https://orvianmarketplace.com/">Orvian Market</a></div>
+<footer><div class="w"><div class="fg"><a href="index.html">All guides</a><a href="best-pest-control-software.html">Best pest control software</a><a href="pest-control-software-pricing-calculator.html">Pricing calculator</a><a href="pesticide-application-records-by-state.html">Pesticide records by state</a><a href="pest-control-license-requirements-by-state.html">Pest control license by state</a><a href="best-hood-cleaning-software.html">Hood cleaning software</a><a href="hood-cleaning-frequency-requirements.html">Hood cleaning schedule (NFPA 96)</a><a href="how-to-start-a-hood-cleaning-business.html">Start a hood cleaning business</a><a href="about.html">How we compare</a><a href="https://orvianmarketplace.com/privacy.html">Privacy</a><a href="https://orvianmarketplace.com/">Orvian Market</a></div>
 <p>&copy; 2026 Orvian Market. Comparisons are built from vendors&rsquo; public pricing pages and documentation, checked {CHK}. We have not tested these products hands-on. Prices change, so confirm on each vendor&rsquo;s site before you buy. Product names and trademarks belong to their owners; Orvian Market isn&rsquo;t affiliated with or endorsed by any vendor named here. Nothing here is legal advice.</p></div></footer>
 </body></html>'''
 
@@ -229,7 +229,7 @@ def records_page():
 <p class="noprint"><button class="btn" type="button" onclick="window.print()">Print or save as PDF</button></p>
 <div class="form"><h3>Pesticide application record</h3><table>{form}</table></div>
 <p style="font-size:13px;color:var(--mute)">Template by Orvian Market. Free to copy and use. Not legal advice; your state&rsquo;s rule is what counts.</p></div></section>
-<section class="sec alt" id="software"><div class="w nw"><h2>Using software instead</h2><p>Pest control apps can fill most of these fields automatically from the job, the product list and the technician&rsquo;s profile. Among tools with published pricing, GorillaDesk lists chemical-use tracking on its $49/mo Basic plan, and Pocomos lists chemical tracking and compliance reporting from $109/mo. General field-service apps like Jobber and Housecall Pro don&rsquo;t list a pest-specific application log, so you&rsquo;d build one from checklists or custom fields. See the <a href="best-pest-control-software.html">full comparison</a> or <a href="pest-control-software-pricing-calculator.html">price your shop</a>.</p></div></section>
+<section class="sec alt" id="software"><div class="w nw"><h2>Using software instead</h2><p>Pest control apps can fill most of these fields automatically from the job, the product list and the technician&rsquo;s profile. Among tools with published pricing, GorillaDesk lists chemical-use tracking on its $49/mo Basic plan, and Pocomos lists chemical tracking and compliance reporting from $109/mo. General field-service apps like Jobber and Housecall Pro don&rsquo;t list a pest-specific application log, so you&rsquo;d build one from checklists or custom fields. See the <a href="best-pest-control-software.html">full comparison</a> or <a href="pest-control-software-pricing-calculator.html">price your shop</a>. Still getting licensed? See <a href="pest-control-license-requirements-by-state.html">pest control license requirements by state</a>.</p></div></section>
 <section class="sec" id="faq"><div class="w nw"><h2>FAQ</h2>{faq_block(faq)}</div></section>'''
     return slug, page(slug,title,desc,body,[art_ld(title,desc,slug),faq_ld(faq),crumbs("Pesticide records by state",slug)])
 HV=[
@@ -408,6 +408,150 @@ def start_page():
 <section class="sec" id="faq"><div class="w nw"><h2>FAQ</h2>{faq_block(faq)}</div></section>'''
     return slug, page(slug,title,desc,body,[art_ld(title,desc,slug),faq_ld(faq),crumbs("Start a hood cleaning business",slug)])
 
+# ---- page 7: pest control license requirements by state (added 2026-10-17 8:20 PM block) ----
+LIC = [
+ dict(st="Texas", ag="Texas Department of Agriculture, Structural Pest Control Service (SPCS)",
+  biz="Commercial business license for each business location, including branch offices. You can&rsquo;t advertise or solicit until it&rsquo;s issued.",
+  who="A <b>responsible commercial certified applicator</b> registered with the business, who can&rsquo;t be the responsible applicator for any other business or location.",
+  exp="12 months of verifiable pest control experience in the past 24 months plus at least 6 months holding an SPCS technician license; or a qualifying biological-science degree; or 12 of the past 24 months of related industry experience. Technicians first complete 20 classroom hours, 40 on-the-job and 8 classroom hours per category, and a 6-hour approved course.",
+  ins="At least $500,000 bodily injury and property damage per occurrence, $1,000,000 aggregate, on TDA form ALS-1101.",
+  fees=[("Commercial business license (per location)",300),("Certified applicator license",125)],
+  nf="Each apprentice or technician also registers for $125. Exam fees are paid to TDA&rsquo;s testing vendor (Metro) after TDA pre-approves you.",
+  src=[("TDA: business license","https://texasagriculture.gov/Regulatory-Programs/Pesticides/Structural-Pest-Control-Service/Structural-Pest-Control-Business"),("TDA: exams and eligibility","https://texasagriculture.gov/Regulatory-Programs/Pesticides/Structural-Pest-Control-Service/Structural-Pest-Control-Exams"),("TDA: technician licensing","https://texasagriculture.gov/Regulatory-Programs/Pesticides/Structural-Pest-Control-Service/Structural-Pest-Control-Licensing/SPCS-Technician-and-Apprentice-Licensing")]),
+ dict(st="Florida", ag="Florida Department of Agriculture and Consumer Services (FDACS)",
+  biz="A business license for each pest control business location, renewed every year.",
+  who="A full-time <b>certified operator in charge</b>, certified in every category the location works in (general household pest and rodent, termite and other WDO, lawn and ornamental, fumigation).",
+  exp="Three years as a service employee of a licensee in the category, one of them in Florida immediately before you apply; or a qualifying degree (20 semester hours in entomology, botany, agronomy or horticulture) plus one year. FDACS&rsquo;s exam application also asks you to document at least 45 jobs per category.",
+  ins="$250,000 per person and $500,000 per occurrence bodily injury, plus $250,000 per occurrence and $500,000 aggregate property damage, or a $500,000 combined single limit.",
+  fees=[("Business license (per location, yearly)",300),("Certified operator exam (per category)",300)],
+  nf="Employee ID cards are $10 each, and the operator certificate renews at $150 a year.",
+  src=[("FDACS: licensing and certification","https://www.fdacs.gov/Business-Services/Pest-Control/Licensing-and-Certification"),("FDACS: fee schedule","https://www.fdacs.gov/Business-Services/Pest-Control/Pest-Control-FAQ/What-are-the-pest-control-licensing-fees"),("F.S. 482.132","https://www.flsenate.gov/Laws/Statutes/2026/482.132")]),
+ dict(st="California", ag="Structural Pest Control Board (SPCB)",
+  biz="Company registration with the SPCB, in each branch you work in (Branch 1 fumigation, Branch 2 general pest, Branch 3 wood-destroying organisms).",
+  who="A <b>Qualifying Manager</b>: a licensed Operator in the same branch who supervises the company&rsquo;s daily business.",
+  exp="For a Branch 2 Operator license: two years of Branch 2 field experience, including one year as a licensed Branch 2 Field Representative (one year = 1,600 hours of field work), plus board-approved pre-operator courses taken within 3 years before the exam. Live Scan fingerprints.",
+  ins="$500,000 general liability, a $12,500 surety bond, and workers&rsquo; compensation (or a filed exemption).",
+  fees=[("Operator exam",100),("Operator license",150)],
+  nf="The company registration fee comes in the SPCB registration packet.",
+  src=[("SPCB: become an Operator","https://www.pestboard.ca.gov/howdoi/opr.shtml"),("SPCB: start a company","https://www.pestboard.ca.gov/howdoi/pr.shtml"),("SPCB: examinations","https://www.pestboard.ca.gov/exam/index.shtml")]),
+ dict(st="Georgia", ag="Georgia Department of Agriculture, Structural Pest Control",
+  biz="A structural pest control <b>company license</b> for anyone doing the work for hire.",
+  who="A <b>Designated Certified Operator (DCO)</b> for each category. The owner can be the DCO if certified; otherwise hire one.",
+  exp="Two years of verifiable structural pest control experience (one within the last five years), or a degree in entomology, public health or a related subject plus one year of service experience in the last five. Pass the core exam plus a category exam. No reciprocity with other states.",
+  ins="Household pest and fumigation: $50,000 bodily injury and $50,000 property damage per occurrence, $200,000 annual aggregate. Wood-destroying organisms: $100,000 / $100,000 / $500,000 plus errors and omissions. Pollution liability for sudden and accidental release.",
+  fees=[("Certified operator exam (per category)",45),("Certified operator credential",100)],
+  nf="The company license fee and a required UGA urban entomology research fee are listed on the application.",
+  src=[("GDA: company license","https://agr.georgia.gov/structural-pest-control-company-license"),("GDA: certified operator license","https://www.agr.georgia.gov/certified-operator-license"),("GDA: insurance form (PDF)","https://agr.georgia.gov/sites/default/files/documents/pest-control/sps-13-06-insurance-form.pdf")]),
+ dict(st="North Carolina", ag="NCDA&amp;CS Structural Pest Control and Pesticides Division",
+  biz="A <b>structural pest control license</b> (held by a person, by phase: P household pests, W wood-destroying organisms, F fumigation) to work on property you or your employer don&rsquo;t own.",
+  who="The licensee must first be an NC <b>Certified Applicator</b> in good standing in that phase.",
+  exp="Two years of independently verifiable experience in that phase (employer affidavits, or customer letters if self-employed), then pass the phase exam. FBI background check dated within 6 months. College training can substitute for some experience.",
+  ins="Proof of insurance, sent by the insurer to NCDA&amp;CS, before the license is issued. Amounts are set in the rules.",
+  fees=[("License, first phase (yearly)",200),("License exam (per attempt, per phase)",50),("Certified applicator ID card",50)],
+  nf="Each extra phase adds $75; employee ID cards are $40 each.",
+  src=[("NCDA&amp;CS: structural licensing","https://www.ncagr.gov/divisions/structural-pest-control-and-pesticides/structural/licensing-and-certification"),("NCDA&amp;CS: license exams","https://www.ncagr.gov/divisions/structural-pest-control-and-pesticides/structural/licensing-and-certification/exam"),("G.S. 106-65.31 (fees)","https://www.ncleg.gov/EnactedLegislation/Statutes/PDF/BySection/Chapter_106/GS_106-65.31.pdf")]),
+ dict(st="Arizona", ag="Arizona Department of Agriculture, Pest Management Division (PMD)",
+  biz="A PMD <b>business license</b> for anyone who advertises, inspects, bids on or applies pesticides for structural pest management.",
+  who="A <b>Qualifying Party (QP)</b>: a Qualified Applicator registered as responsible for training, equipping and supervising the company&rsquo;s applicators.",
+  exp="To be a Qualified Applicator: 24 months as a certified applicator in the category within the last 10 years, or 12 months plus qualifying coursework or a degree, or 24 months of pest management business experience in a state that didn&rsquo;t require a license. Pass core and category exams at 75%. Fingerprint background check.",
+  ins="Proof of financial security filed with the business license application.",
+  fees=[("Business license",185),("Qualified Applicator application",75),("QP registration (filed with the business license)",0)],
+  nf="Certified Applicators (your techs) apply for $55 each.",
+  src=[("AZDA PMD: FAQs (requirements and fees)","https://agriculture.az.gov/divisions/environmental-consumer-protection-division/pest-management-division/pest-management-faqs"),("A.A.C. R3-8-103 (fees)","https://www.law.cornell.edu/regulations/arizona/Ariz-Admin-Code-SS-R3-8-103")]),
+ dict(st="Ohio", ag="Ohio Department of Agriculture",
+  biz="A <b>pesticide business license</b>, with each registered location listed, to apply pesticides for hire. The licensing period runs October 1 to September 30.",
+  who="Licensed <b>commercial applicators</b> do the work.",
+  exp="A commercial applicator license needs a passing score on the exams for each pesticide use category you apply in.",
+  ins="Proof of financial responsibility, required before the license is issued and each renewal.",
+  fees=[("Pesticide business license (and each added location)",35),("Commercial applicator license",35)],
+  nf="Late renewals cost 50% more.",
+  src=[("OAC 901:5-11-03 (business license)","https://codes.ohio.gov/ohio-administrative-code/rule-901:5-11-03"),("OAC 901:5-11-04 (commercial applicator)","https://codes.ohio.gov/ohio-administrative-code/rule-901:5-11-04")]),
+ dict(st="Pennsylvania", ag="Pennsylvania Department of Agriculture",
+  biz="A <b>pesticide application business license</b>, renewed every year.",
+  who="At least one <b>certified applicator</b>. Technicians who apply under supervision register with the department.",
+  exp="Commercial applicators pass the core exam and a category exam.",
+  ins="At least $100,000 bodily injury and $100,000 property damage per occurrence, covering completed operations and pesticide application, with a deductible no higher than $2,500.",
+  fees=[("Business license (yearly)",35),("Commercial applicator certificate (yearly)",40),("Core exam",50),("Category exam",10)],
+  nf="Commercial technician registration is $30 a year.",
+  src=[("PDA: pesticide application businesses","https://www.pa.gov/agencies/pda/plants-land-water/plant-industry/pesticide-programs/pesticide-application-businesses"),("7 Pa. Code &sect;128.3 (fees)","https://www.pacodeandbulletin.gov/secure/pacode/data/007/chapter128/s128.3.html"),("7 Pa. Code &sect;128.34 (insurance)","https://www.pacodeandbulletin.gov/Display/pacode?d=reduce&file=%2Fsecure%2Fpacode%2Fdata%2F007%2Fchapter128%2Fs128.34.html")]),
+ dict(st="New York", ag="NYS Department of Environmental Conservation (DEC)",
+  biz="A <b>business registration</b> for each business address. It lasts about 3 years, with the expiry date set by DEC region.",
+  who="A <b>certified applicator</b> in each category. For the structural subcategories (7a&ndash;7d, 7f, 7g) a technician isn&rsquo;t enough.",
+  exp="One year as a certified technician plus 12 hours of category training, or two years as a technician; or three years of full-time apprentice experience within the last five years plus the core and category exams.",
+  ins="Commercial general liability of at least $1,000,000 per occurrence, with NYSDEC named as certificate holder.",
+  fees=[("Business registration (about 3 years)",900),("Applicator certification, first category",450),("Exams: core + one category ($100 each)",200)],
+  nf="Each extra category or subcategory is $150.",
+  src=[("NYSDEC: business registration","https://dec.ny.gov/environmental-protection/pesticides/business-agency-information"),("6 NYCRR 325.8 (eligibility)","https://www.law.cornell.edu/regulations/new-york/6-NYCRR-325.8"),("ECL &sect;33-0911 (fees)","https://law.justia.com/codes/new-york/env/article-33/title-9/33-0911/")]),
+ dict(st="Illinois", ag="Illinois Department of Public Health (Structural Pest Control)",
+  biz="A <b>commercial structural pest control business license</b> for each business location, renewed by December 1 every year.",
+  who="At least one <b>certified technician</b> at the business.",
+  exp="General-use pesticides: pass the General Standards exam. Restricted-use pesticides: also pass subcategory exams. Certification renews every 3 years.",
+  ins="A certificate of insurance on IDPH&rsquo;s own form, sent by your insurer.",
+  fees=[("Business license (per location)",250)],
+  nf="Technician exam fees are on IDPH&rsquo;s technician application.",
+  src=[("IDPH: structural pest control","https://dph.illinois.gov/topics-services/environmental-health-protection/structural-pest-control.html"),("IDPH: business license application (PDF)","https://dph.illinois.gov/content/dam/soi/en/web/idph/files/forms/structural-pest-control-license-application-commercial-business-101817.pdf")]),
+ dict(st="Virginia", ag="Virginia Department of Agriculture and Consumer Services (VDACS)",
+  biz="A <b>pesticide business license</b> for each location or outlet. It expires March 31 every year.",
+  who="A <b>certified commercial applicator</b>. The applicant or an employee also passes the business license exam, unless they&rsquo;re already certified.",
+  exp="One year as a Virginia Registered Technician, or one year of pesticide-related education, training or experience. Certificates expire June 30 of the second year after issue.",
+  ins="At least $100,000 property damage, $100,000 for injury or death of one person, and $300,000 per occurrence.",
+  fees=[("Business license (per location, yearly)",75),("Commercial applicator certificate",25)],
+  nf="Reexamination is $25.",
+  src=[("VDACS: pesticide business license","https://www.vdacs.virginia.gov/pesticide-business-license.shtml"),("2VAC5-675-50 (business fee)","https://law.lis.virginia.gov/admincode/title02/agency5/chapter675/section50/"),("2VAC5-675-30 (applicator fee)","https://law.lis.virginia.gov/admincode/title02/agency5/chapter675/section30/")]),
+ dict(st="Tennessee", ag="Tennessee Department of Agriculture",
+  biz="A <b>pesticide charter</b> for each office that does commercial pest control. Charters expire June 30 of odd-numbered years.",
+  who="Each charter names the licensed <b>pest control operator(s)</b> who supervise the work, plus a roster of registered solicitors and technicians.",
+  exp="The supervising operator must hold a Tennessee license in the categories offered. See the department&rsquo;s certification page for the exam steps.",
+  ins="Proof of a bond and liability insurance. If either lapses the charter expires at once, with a 30-day grace period to send new proof.",
+  fees=[],
+  nf="The charter fee and the per-person technician fee are tiered fees under T.C.A. &sect;43-1-703 and can be prorated in the first term; the current amounts are on the charter application.",
+  src=[("Tenn. Comp. R. &amp; Regs. 0080-09-04-.03 (charters)","https://www.law.cornell.edu/regulations/tennessee/Tenn-Comp-R-Regs-0080-09-04-.03"),("TDA: certification, licensing and charters","https://www.tn.gov/agriculture/businesses/pesticides/certification.html")]),
+]
+def lic_page():
+    slug="pest-control-license-requirements-by-state.html"
+    title="Pest Control License Requirements by State (2026): Fees, Experience and Insurance"
+    desc=f"What it takes to license a pest control business in TX, FL, CA, GA, NC, AZ, OH, PA, NY, IL, VA and TN: the business license, who must qualify it, experience, insurance minimums and official fees. Checked {CHK}."
+    def fee_txt(v):
+        f="; ".join(f"{n}: <b>${a:,}</b>" for n,a in v["fees"]) if v["fees"] else "Not stated as a flat amount (see note)"
+        return f+(f'. <span style="color:var(--mute);font-size:13px">{v["nf"]}</span>' if v["nf"] else "")
+    def lcard(v):
+        srcs=" &middot; ".join(f'<a href="{u}" rel="noopener" target="_blank">{n}</a>' for n,u in v["src"])
+        return f'<div class="card" id="{sid(v["st"])}"><h3>{v["st"]}</h3><p class="for">{v["ag"]}</p><p class="price"><b>Business license:</b> {v["biz"]}</p><p class="price"><b>Who qualifies it:</b> {v["who"]}</p><p class="price"><b>Experience:</b> {v["exp"]}</p><p class="price"><b>Insurance:</b> {v["ins"]}</p><p class="price"><b>Listed state fees:</b> {fee_txt(v)}</p><p class="watch"><b>Official sources:</b> {srcs}</p></div>'
+    rows="".join(lcard(v) for v in LIC)
+    jump=" &middot; ".join(f'<a href="#{sid(v["st"])}">{v["st"]}</a>' for v in LIC)
+    cdata=json.dumps({v["st"]:{"f":v["fees"],"n":plain(v["nf"]),"i":plain(v["ins"]),"w":plain(v["who"])} for v in LIC})
+    opts="".join(f'<option{" selected" if v["st"]=="Texas" else ""}>{v["st"]}</option>' for v in LIC)
+    checklist=["Found your state&rsquo;s lead agency and read its licensing page (linked in the table)","Decided who qualifies the business: you, or a certified person you hire","Counted that person&rsquo;s documented experience against the state&rsquo;s minimum (dates, hours, employer letters)","Booked any required pre-exam training or courses","Passed the core exam and each category exam you&rsquo;ll work in","Insurance certificate on the state&rsquo;s own form, at or above its minimums (and a bond, if required)","Business license or registration issued for each location before advertising","Technicians and salespeople registered, where the state requires it","Local business license and registration with your city or county","Application record forms or software ready before the first job (see our <a href=\"pesticide-application-records-by-state.html\">records guide</a>)","Renewal dates and continuing-education hours on the calendar"]
+    form="".join(f'<tr><td style="width:28px">&#9744;</td><td>{c}</td></tr>' for c in checklist)
+    faq=[("Do I need a license to start a pest control business?","In every state we checked, yes. Each one requires a business license, registration or charter for the company, and a certified or licensed person who qualifies it. Who that person must be, and how much experience they need, is what varies most."),
+         ("Can I get a pest control license with no experience?","Usually not to qualify a business on your own. Most of the 12 states require one to three years of documented experience for the person in charge (for example 2 years in California, Georgia and North Carolina, 3 years in Florida), though a related degree can shorten it in several states. A common path is to work as a registered technician first, or to hire a certified operator to qualify your company while you get your own hours."),
+         ("How much does a pest control license cost?",f"The state fees themselves are modest. In the table, the business license runs from $35 a year (Ohio, Pennsylvania) to $300 (Texas, Florida) or $900 for a roughly 3-year New York registration, and exams run from $10 to $300 each. Insurance, bonds, training courses and your time cost far more. All figures are listed state fees checked {CHK}."),
+         ("Is a pest control license good in other states?","Generally no. Georgia and North Carolina both say they have no reciprocal licensing agreements, and most states make you meet their own exam and experience rules. Arizona lets the director waive exams in whole or in part for someone certified in another state."),
+         ("Is this legal advice?",f"No. It&rsquo;s a plain-English summary of each state&rsquo;s official pages and rules, checked {CHK}, with every source linked. Fees and rules change, so confirm with the agency before you apply.")]
+    body = hero("Free guide &middot; pest control licensing","Pest control license requirements by state",
+      "What it takes to license a pest control company in 12 big pest-control states: the business license, the certified person who has to qualify it, the experience they need, insurance minimums and the state&rsquo;s own fees. Every row links to the official source.",
+      [f"Checked {CHK}","Official sources linked","Fee totals by state","Not legal advice"],
+      [("how","How it works"),("calc","Fees by state"),("table","State table"),("checklist","Checklist"),("software","After licensing"),("faq","FAQ")])
+    body += f'''<section class="sec" id="how"><div class="w nw"><h2>How pest control licensing works</h2>
+<p>Almost every state licenses two things separately. The <b>business</b> gets a license, registration or charter for each location. A <b>certified person</b> (called a certified operator, qualifying manager, qualifying party or responsible certified applicator, depending on the state) has to be attached to that business and passes the exams. Technicians who do the spraying usually register under that person.</p>
+<p>That&rsquo;s why the experience rule matters most. You can form the company on day one, but in most states it can&rsquo;t work until someone with enough documented field time has passed the exams and is named on the license.</p>
+<p>The federal baseline sits underneath: under EPA&rsquo;s certification rule, anyone who uses or supervises restricted-use pesticides must be a certified applicator under a state plan (<a href="https://www.ecfr.gov/current/title-40/chapter-I/subchapter-E/part-171" rel="noopener" target="_blank">40 CFR Part 171</a>). The states below go further and cover general-use structural work too.</p></div></section>
+<section class="sec alt" id="calc"><div class="w"><h2>State fees, added up</h2><p class="sub">Pick a state to see its listed government fees for one location and one qualifying person in one category. Insurance, bonds, courses and testing-vendor fees aren&rsquo;t included.</p>
+<div class="calc"><form class="cin" onsubmit="return false" aria-label="State"><label for="lst">State</label><select id="lst">{opts}</select><p class="hint">Fees as listed by each agency, checked {CHK}.</p></form>
+<div><div class="res" id="lout" aria-live="polite"></div></div></div>
+<noscript><p>Fees for each state are listed in the table below.</p></noscript></div></section>
+<script>(function(){{var D={cdata};var s=document.getElementById('lst'),o=document.getElementById('lout');function m(n){{return '$'+n.toLocaleString('en-US')}}function e(t){{var d=document.createElement('div');d.textContent=t;return d.innerHTML}}function u(){{var v=D[s.value],t=0,h='';v.f.forEach(function(x){{t+=x[1];h+='<div class="row"><div><div class="nm">'+e(x[0])+'</div></div><div class="amt">'+m(x[1])+'</div></div>'}});h='<div class="row best"><div><div class="nm">Listed state fees for '+e(s.value)+'</div><div class="pl">'+(v.f.length?'Business plus one qualifying person, one category':'No flat amount published on the pages we checked')+'</div></div><div class="amt">'+(v.f.length?m(t):'See note')+'</div></div>'+h;if(v.n)h+='<div class="row"><div><div class="pl">'+e(v.n)+'</div></div></div>';h+='<div class="row"><div><div class="nm">Insurance minimum</div><div class="pl">'+e(v.i)+'</div></div></div>';o.innerHTML=h}}s.addEventListener('change',u);u()}})();</script>
+<section class="sec" id="table"><div class="w"><h2>Requirements in 12 states</h2><p class="sub">Structural (household and commercial building) pest control, summarized from each agency&rsquo;s own pages and rules. Jump to: {jump}</p>
+<div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(min(100%,440px),1fr))">{rows}</div>
+<div class="note w2"><b>Summary only.</b> Condensed from official pages as of {CHK}. Termite, fumigation, lawn and ornamental, and wildlife work often have their own categories and rules, and cities or counties may want a separate business license. For states not listed, start with the <a href="https://npic.orst.edu/reg/state_agencies.html" rel="noopener" target="_blank">NPIC directory of state pesticide regulatory agencies</a>.</div></div></section>
+<section class="sec alt" id="checklist"><div class="w nw"><h2>Free printable licensing checklist</h2><p class="sub">Work through it with your state&rsquo;s row open.</p>
+<p class="noprint"><button class="btn" type="button" onclick="window.print()">Print or save as PDF</button></p>
+<div class="form"><h3>Pest control business licensing checklist</h3><table>{form}</table></div>
+<p style="font-size:13px;color:var(--mute)">Checklist by Orvian Market. Free to copy and use. Not legal advice; your state&rsquo;s rules are what count.</p></div></section>
+<section class="sec" id="software"><div class="w nw"><h2>After you&rsquo;re licensed: records and software</h2><p>Once you&rsquo;re working, every state on this list also expects application records, usually kept 2 or 3 years. Our <a href="pesticide-application-records-by-state.html">pesticide records guide</a> has each state&rsquo;s retention rule and a free printable log. When paper stops scaling, compare <a href="best-pest-control-software.html">pest control software</a> on published prices, or <a href="pest-control-software-pricing-calculator.html">price your own shop</a>. Among tools that publish prices, GorillaDesk lists chemical-use tracking on its $49/mo Basic plan.</p></div></section>
+<section class="sec alt" id="faq"><div class="w nw"><h2>FAQ</h2>{faq_block(faq)}</div></section>'''
+    return slug, page(slug,title,desc,body,[art_ld(title,desc,slug),faq_ld(faq),crumbs("Pest control license by state",slug)])
+
 def about_page():
     slug="about.html"; title="How Orvian Market Software Guides Compares Software"; desc="Method, sources and affiliate disclosure for Orvian Market Software Guides."
     body = hero("About these guides","How we compare software","The same plain rules apply to every guide on this site.",[f"Last updated {CHK}"])
@@ -415,15 +559,17 @@ def about_page():
 <h3>What we use</h3><p>Each vendor&rsquo;s own public pricing page, product pages and documentation, plus official government sources for compliance topics. Every claim links to its source. When a vendor doesn&rsquo;t publish a price, we say &ldquo;quote only&rdquo; rather than repeat third-party estimates.</p>
 <h3>What we don&rsquo;t do</h3><p>We don&rsquo;t claim hands-on testing we haven&rsquo;t done, publish star ratings or invented scores, or write fake reviews. If we ever test a product hands-on, the page will say what we did and when.</p>
 <h3 id="disclosure">Affiliate disclosure</h3><p><b>None of our guides contain affiliate links today.</b> In the future we may join vendors&rsquo; affiliate or partner programs, which pay us a commission if you buy through our link, at no extra cost to you. If we do, every affiliate link will be labeled, this notice will name the programs, and rankings won&rsquo;t depend on commissions. Vendors can&rsquo;t pay to be listed or ranked.</p>
+<h3 id="privacy">Privacy</h3><p>We use Google Analytics 4 to count page views and clicks on outbound buy links. It sets first-party cookies. We don&rsquo;t run ads, don&rsquo;t sell personal data, and the pricing calculator runs entirely in your browser. Full details in our <a href="https://orvianmarketplace.com/privacy.html">privacy note</a>.</p>
 <h3>Corrections</h3><p>Spotted an outdated price? Every page shows the date we checked, and vendors change prices often, so the vendor&rsquo;s own page is always the final word.</p></div></section>'''
     return slug, page(slug,title,desc,body,[crumbs("How we compare",slug)])
 
 def index_page():
     slug="index.html"; title="Software Guides for Pest Control and Hood Cleaning Businesses | Orvian Market"
-    desc=f"Honest, dated software comparisons for small field-service businesses: pest control software, a pricing calculator, state pesticide record rules and hood cleaning apps. Checked {CHK}."
+    desc=f"Honest, dated software comparisons for small field-service businesses: pest control software, a pricing calculator, state license and pesticide record rules, and hood cleaning guides. Checked {CHK}."
     hubs=[("Pest control","best-pest-control-software.html","Best pest control software for small operators (2026)","GorillaDesk, Pocomos, Jobber, Housecall Pro, QuoteIQ, PestPac, FieldRoutes and Briostack, compared on public pricing."),
           ("Free tool","pest-control-software-pricing-calculator.html","Pest control software pricing calculator","Enter your routes, users and customers to see five vendors&rsquo; list prices side by side."),
           ("Free guide","pesticide-application-records-by-state.html","Pesticide application records by state","Retention periods and required fields for 12 states, with official sources and a printable log."),
+          ("Free guide","pest-control-license-requirements-by-state.html","Pest control license requirements by state","Business licenses, who must qualify them, experience, insurance minimums and state fees for 12 states."),
           ("Hood cleaning","best-hood-cleaning-software.html","Best hood cleaning software (2026)","Seven NFPA 96 report and business apps, free plans included."),
           ("Free guide","hood-cleaning-frequency-requirements.html","How often must a kitchen hood be cleaned?","The NFPA 96 and fire code schedule, grease depth limits, tag rules, a next-service calculator and a printable record."),
           ("Startup guide","how-to-start-a-hood-cleaning-business.html","How to start a hood cleaning business","License examples, certification costs, insurance, wastewater and roof rules, pricing benchmarks and a printable checklist.")]
@@ -432,8 +578,12 @@ def index_page():
     body += f'<section class="sec"><div class="w"><h2>Guides</h2><p class="sub">Start with your trade.</p><div class="hubs">{hb}</div></div></section><section class="sec alt"><div class="w"><h2>How we compare</h2>{METHOD}<p style="margin-top:16px"><a href="about.html">Read the full method and disclosure &rarr;</a></p></div></section>'
     return slug, page(slug,title,desc,body,[{"@context":"https://schema.org","@type":"CollectionPage","name":title,"url":BASE,"description":desc}])
 
-pages=[index_page(),best_page(),calc_page(),records_page(),hood_page(),hood_freq_page(),start_page(),about_page()]
-for s,h in pages: open("out/"+s,"w").write(h)
+pages=[index_page(),best_page(),calc_page(),records_page(),lic_page(),hood_page(),hood_freq_page(),start_page(),about_page()]
+# GA4 tag (G-F3QH6E9QR7) + buy_click listener, from ga.py (next to this file in the repo, or /workspace/money-lab/brand/site)
+import sys as _sys
+_sys.path[:0]=[os.path.dirname(os.path.abspath(__file__)),"/workspace/money-lab/brand/site"]
+from ga import add_ga
+for s,h in pages: open("out/"+s,"w").write(add_ga(h))
 sm='<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+"".join(f'<url><loc>{BASE}{"" if s=="index.html" else s}</loc><lastmod>{CHK_ISO}</lastmod></url>\n' for s,_ in pages)+'</urlset>\n'
 open("out/sitemap.xml","w").write(sm)
 print("built",[s for s,_ in pages])
