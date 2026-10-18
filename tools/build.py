@@ -24,10 +24,11 @@ def page(slug, title, desc, body, ld=None):
 <p>&copy; 2026 Orvian Market. Comparisons are built from vendors&rsquo; public pricing pages and documentation, checked {CHK}. We have not tested these products hands-on. Prices change, so confirm on each vendor&rsquo;s site before you buy. Product names and trademarks belong to their owners; Orvian Market isn&rsquo;t affiliated with or endorsed by any vendor named here. Nothing here is legal advice.</p></div></footer>
 </body></html>'''
 
-def hero(eb, h1, lead, meta, toc=None):
+def hero(eb, h1, lead, meta, toc=None, ans=None):
     m = "".join(f"<span>{E(x)}</span>" for x in meta)
     t = ('<div class="toc">'+"".join(f'<a href="#{a}">{E(b)}</a>' for a,b in toc)+'</div>') if toc else ""
-    return f'<section class="hero"><div class="w"><p class="eb">{eb}</p><h1>{E(h1)}</h1><p class="lead">{lead}</p><div class="meta">{m}</div>{t}</div></section>'
+    a = f'<div class="ans"><p class="ans-k">Short answer</p><p>{ans}</p></div>' if ans else ""
+    return f'<section class="hero"><div class="w"><p class="eb">{eb}</p><h1>{E(h1)}</h1>{a}<p class="lead">{lead}</p><div class="meta">{m}</div>{t}</div></section>'
 def faq_block(faq):
     return "".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q,a in faq)
 def plain(s): return H.unescape(re.sub("<[^>]+>","",s))
@@ -103,8 +104,8 @@ def vcard(v):
 
 def best_page():
     slug="best-pest-control-software.html"
-    title="Best Pest Control Software for Small Operators (2026): Prices Compared"
-    desc=f"GorillaDesk, Pocomos, Jobber, Housecall Pro, QuoteIQ, PestPac, FieldRoutes and Briostack compared on published pricing, pest-specific records and who each fits. Checked {CHK}."
+    title="Best Pest Control Software for Small Operators (2026)"
+    desc="GorillaDesk, Pocomos, Jobber, Housecall Pro, QuoteIQ, PestPac, FieldRoutes and Briostack compared on published pricing, pest records and who each fits."
     rows="".join(f'<tr><td>{v["name"]}</td><td>{v["short"]}</td><td>{v["model"]}</td><td>{v["pest"]}</td><td>{v["trial"]}</td><td>{v["contract"]}</td><td class="src"><a href="{v["url"]}" rel="nofollow noopener" target="_blank">pricing page</a></td></tr>' for v in V)
     picks = [("Cheapest published, 1 route","GorillaDesk","Basic is $49/mo for one route and includes chemical-use tracking.","gd"),
              ("Many techs, modest customer list","Pocomos","Unlimited users, priced by active customers, from $109/mo.","po"),
@@ -136,8 +137,8 @@ def best_page():
     return slug, page(slug,title,desc,body,[art_ld(title,desc,slug),faq_ld(faq),crumbs("Best pest control software",slug)])
 def calc_page():
     slug="pest-control-software-pricing-calculator.html"
-    title="Pest Control Software Pricing Calculator (2026): GorillaDesk vs Pocomos vs Jobber vs Housecall Pro"
-    desc=f"Enter your routes, office users and active customers to compare the monthly and yearly list price of five pest control software tools. Public prices checked {CHK}."
+    title="Pest Control Software Pricing Calculator: 5 Tools Compared"
+    desc="Enter your routes, office users and active customers to compare monthly and yearly list prices of five pest control software tools, side by side."
     faq=[("How is the cost calculated?","For each vendor we apply its published list price to your inputs: per route for GorillaDesk, by active-customer tier for Pocomos, and the cheapest plan with enough users (plus published extra-user fees) for Jobber, Housecall Pro and QuoteIQ. Taxes, payment processing, SMS, add-ons and intro promotions aren&rsquo;t included."),
          ("Why does the cheapest line show a different plan for each vendor?","The calculator picks the cheapest plan that fits your headcount, but plans differ in features. Recurring billing and route optimization, for example, are on higher plans at some vendors. Check the plan&rsquo;s features on the vendor&rsquo;s pricing page."),
          ("Why aren&rsquo;t PestPac, FieldRoutes and Briostack calculated?","They don&rsquo;t publish prices. They&rsquo;re listed so you remember to ask for a written quote."),
@@ -206,8 +207,8 @@ S = [
 def sid(n): return n.lower().replace(" ","-")
 def records_page():
     slug="pesticide-application-records-by-state.html"
-    title="Pesticide Application Record Requirements by State (2026): Free Guide + Log Template"
-    desc=f"How long to keep pest control application records, and what to record, in TX, FL, CA, GA, NC, AZ, OH, PA, NY, IL, VA and TN, with links to the official rules and a free printable log. Checked {CHK}."
+    title="Pesticide Application Record Requirements by State"
+    desc="In the 12 states checked, pest control application records are kept 2 or 3 years. Retention and required fields for 12 states, official rules linked, free printable log."
     rows="".join(f'<tr id="{sid(s[0])}"><td>{s[0]}</td><td><b>{s[2]}</b></td><td>{s[3]}</td><td>{s[1]}</td><td class="src">'+"<br>".join(f'<a href="{u}" rel="noopener" target="_blank">{n}</a>' for n,u in s[4])+'</td></tr>' for s in S)
     jump=" &middot; ".join(f'<a href="#{sid(s[0])}">{s[0]}</a>' for s in S)
     flds=["Date, start time and finish time","Customer name, address and phone","Service address and specific site or area treated","Target pest(s)","Product trade (brand) name","EPA registration number","Amount applied; dilution or % active ingredient; rate","Application method and equipment","Applicator name and license/certification no.","Supervising applicator and license no. (if supervised)","Business license number","Outdoor work: wind direction, speed, temperature","Devices or bait stations installed or checked","Precautions, notes, customer copy given (Y/N)"]
@@ -220,7 +221,7 @@ def records_page():
     body = hero("Free guide &middot; pest control compliance","Pesticide application record requirements by state",
       "How long to keep application records, and which fields to record, in 12 large pest-control states, with the official rule linked for each. Plus a free printable application log.",
       [f"Rules checked {CHK}","Official sources linked","Free printable log","Not legal advice"],
-      [("table","State table"),("federal","Federal baseline"),("template","Printable log"),("software","Using software instead"),("faq","FAQ")])
+      [("table","State table"),("federal","Federal baseline"),("template","Printable log"),("software","Using software instead"),("faq","FAQ")], ans="In the 12 states we checked, pest control application records must be kept <b>2 or 3 years</b>: 2 in Texas, Florida, Georgia, Illinois, Virginia, Tennessee and North Carolina (past the last treatment), 3 in California, Arizona, Ohio, Pennsylvania and New York. The federal baseline asks for date, customer, site, product, EPA number, amount and applicator.")
     body += f'''<section class="sec" id="table"><div class="w"><h2>Record rules in 12 states</h2><p class="sub">Structural and commercial pest control application records, summarized from the official rule text. Jump to: {jump}</p>
 <div class="tw"><table class="t"><thead><tr><th>State</th><th>Keep records for</th><th>What to record (summary)</th><th>Lead agency</th><th>Official rule / source</th></tr></thead><tbody>{rows}</tbody></table></div>
 <div class="note w2"><b>Summary only.</b> These are condensed from the rule text as of {CHK}. Several states have extra rules for termite, fumigation, school or restricted-use work, so read the linked rule before you design your forms. Rule text links go to the Cornell LII mirror of the state code where the state&rsquo;s own site is hard to link. For other states, see the <a href="https://npic.orst.edu/reg/state_agencies.html" rel="noopener" target="_blank">NPIC directory of state pesticide regulatory agencies</a>.</div></div></section>
@@ -243,8 +244,8 @@ HV=[
 ]
 def hood_page():
     slug="best-hood-cleaning-software.html"
-    title="Best Hood Cleaning Software (2026): NFPA 96 Report Apps Compared by Price"
-    desc=f"MyHoodClean, HoodCleaningReport, Stampario, HoodStamp, QuoteIQ, Smart Service and HoodOps compared on published pricing, free plans and NFPA 96 reporting. Checked {CHK}."
+    title="Best Hood Cleaning Software (2026), Compared by Price"
+    desc="MyHoodClean, HoodCleaningReport, Stampario, HoodStamp, QuoteIQ, Smart Service and HoodOps compared on published pricing, free plans and NFPA 96 reports."
     rows="".join(f'<tr><td>{a}</td><td>{c}</td><td>{d}</td><td>{e}</td><td>{f}</td><td class="src"><a href="{u}" rel="nofollow noopener" target="_blank">source</a></td></tr>' for a,u,c,d,e,f in HV)
     faq=[("Is there free hood cleaning report software?",f"Yes. Stampario has a free plan for 5 reports a month, HoodStamp lists a free plan for 3 certificates a month, and HoodCleaningReport has a free trial of 3 reports or 3 days, per their sites checked {CHK}."),
          ("What&rsquo;s the cheapest all-in-one hood cleaning app?","Of the hood-specific apps that publish prices, MyHoodClean is $49.99 a month ($34.99 a month billed yearly) and covers reports, scheduling, invoicing and a website. Stampario Pro is cheaper at $29 a month but focuses on reports."),
@@ -285,8 +286,8 @@ HF_ST = [
 ]
 def hood_freq_page():
     slug="hood-cleaning-frequency-requirements.html"
-    title="How Often Must a Commercial Kitchen Hood Be Cleaned? NFPA 96 Schedule (2026)"
-    desc=f"The NFPA 96 and International Fire Code inspection schedule for kitchen exhaust hoods (monthly, quarterly, semiannual, annual), grease depth limits, tag and record rules, state license examples and a free service record. Checked {CHK}."
+    title="How Often Must Kitchen Hoods Be Cleaned? NFPA 96 Schedule"
+    desc="Monthly for solid fuel, quarterly for high-volume, every 6 months for most restaurants, yearly for low volume. NFPA 96 schedule, grease limits and a free service record."
     def src(k): n,u=HF_SRC[k]; return f'<a href="{u}" rel="noopener" target="_blank">{n}</a>'
     sched=[("Solid fuel cooking (wood, charcoal)","Monthly","1 month"),
            ("High volume: 24-hour cooking, charbroiling, wok cooking","Quarterly","3 months"),
@@ -305,7 +306,7 @@ def hood_freq_page():
     body = hero("Free guide &middot; kitchen exhaust cleaning","How often must a commercial kitchen hood be cleaned?",
       "The NFPA 96 and International Fire Code inspection schedule in one table, the grease depth that triggers a cleaning, what records and tags the code asks for, and four places that license hood cleaners. Plus a free next-service calculator and a printable service record.",
       [f"Checked {CHK}","Official sources linked","Free calculator + record","Not legal advice"],
-      [("schedule","The schedule"),("calc","Next service due"),("grease","When to clean"),("records","Records and tags"),("states","Licensing examples"),("template","Printable record"),("faq","FAQ")])
+      [("schedule","The schedule"),("calc","Next service due"),("grease","When to clean"),("records","Records and tags"),("states","Licensing examples"),("template","Printable record"),("faq","FAQ")], ans="NFPA 96 schedules <b>inspections</b>, and the system is cleaned when one finds grease buildup: <b>monthly</b> for solid fuel cooking, <b>quarterly</b> for high-volume cooking (24-hour, charbroiling, wok), <b>every 6 months</b> for most restaurants and <b>yearly</b> for low-volume kitchens like churches and senior centers. The International Fire Code matches.")
     body += f'''<section class="sec" id="schedule"><div class="w"><h2>The inspection schedule</h2><p class="sub">Both codes set the minimum interval for <b>inspecting</b> the whole exhaust system for grease buildup. Inspection results decide whether it gets cleaned.</p>
 <div class="tw"><table class="t"><thead><tr><th>Type or volume of cooking</th><th>NFPA 96 (2024), Table 12.4</th><th>IFC 2021, Table 607.3.3.1</th></tr></thead><tbody>{srows}</tbody></table></div>
 <div class="note"><b>Sources:</b> {src("nfpa")}; {src("ifc")}. NFPA 96 says inspections must be done by a &ldquo;properly trained, qualified, and certified person(s) acceptable to the authority having jurisdiction.&rdquo; The IFC lets the fire code official approve other intervals.</div></div></section>
@@ -351,8 +352,8 @@ ST_SRC = {
 }
 def start_page():
     slug="how-to-start-a-hood-cleaning-business.html"
-    title="How to Start a Hood Cleaning Business (2026): Licenses, Certification, Insurance and Costs"
-    desc=f"A sourced startup guide for kitchen exhaust (hood) cleaning: state license examples, IKECA and Phil Ackland certification costs, insurance, wastewater and roof safety rules, pricing benchmarks and a printable checklist. Checked {CHK}."
+    title="How to Start a Hood Cleaning Business: Licenses and Costs"
+    desc="No national license: check state and city rules, get certified (IKECA exams $325 to $1,020), insure, plan wastewater and price jobs. Sourced costs and a free checklist."
     def s(k): n,u=ST_SRC[k]; return f'<a href="{u}" rel="noopener" target="_blank">{n}</a>'
     certs=[("Phil Ackland 5-day kitchen exhaust certification course","Hands-on training plus Phil Ackland&rsquo;s own certification test, NFPA 96 copy and forms","$4,500 per attendee, hotel included; recertification $369 ($747 if lapsed over a year)","New owners and crew leaders who need hands-on training first",["pa_course","pa_recert"]),
            ("IKECA CECT (Certified Exhaust Cleaning Technician)","100 multiple-choice questions, 2 hours, closed book, 70% to pass, English or Spanish","$325 exam (listed price); retakes $80, up to two; study guide $60","Field technicians: IKECA calls it the baseline certification",["cect","cect_rules","cect_app"]),
@@ -377,7 +378,7 @@ def start_page():
     body = hero("Hood cleaning &middot; startup guide","How to start a hood cleaning business (2026)",
       "What you actually need before your first kitchen exhaust job: the rules where you work, training and certification, insurance, a wastewater plan, roof safety and a price sheet. Every cost here links to its source.",
       [f"Checked {CHK}","Official and vendor sources linked","Printable checklist","Not legal advice"],
-      [("rules","License rules"),("certs","Certification costs"),("insurance","Insurance"),("water","Wastewater"),("roof","Roof safety"),("price","Pricing"),("checklist","Checklist"),("faq","FAQ")])
+      [("rules","License rules"),("certs","Certification costs"),("insurance","Insurance"),("water","Wastewater"),("roof","Roof safety"),("price","Pricing"),("checklist","Checklist"),("faq","FAQ")], ans="There&rsquo;s no national hood cleaning license in the US. NFPA 96 requires a trained, certified person the local authority accepts. Check your state and city rules, get certified (IKECA exams are listed at $325 to $1,020), then insure the business, plan wastewater disposal and set your prices.")
     body += f'''<section class="sec"><div class="w nw"><h2>The seven steps</h2><ol class="steps">{stp}</ol></div></section>
 <section class="sec alt" id="rules"><div class="w nw"><h2>1. Check what your state and city require</h2>
 <p>There is no single national hood cleaning license in the US. The baseline is NFPA 96, the fire standard most jurisdictions adopt: when an exhaust system is contaminated with grease, it &ldquo;shall be cleaned by a properly trained, qualified, and certified person(s) acceptable to the authority having jurisdiction&rdquo; (2024 edition, Section 12.6.1, quoted in the {s("ikeca_faq")}). The &ldquo;authority having jurisdiction&rdquo; is usually your local fire marshal.</p>
@@ -509,8 +510,8 @@ LIC = [
 ]
 def lic_page():
     slug="pest-control-license-requirements-by-state.html"
-    title="Pest Control License Requirements by State (2026): Fees, Experience and Insurance"
-    desc=f"What it takes to license a pest control business in TX, FL, CA, GA, NC, AZ, OH, PA, NY, IL, VA and TN: the business license, who must qualify it, experience, insurance minimums and official fees. Checked {CHK}."
+    title="Pest Control License Requirements by State: 12 States"
+    desc="All 12 states checked require a business license and a certified person to qualify it. Experience, insurance and fees for TX, FL, CA, GA, NC, AZ, OH, PA, NY, IL, VA, TN."
     def fee_txt(v):
         f="; ".join(f"{n}: <b>${a:,}</b>" for n,a in v["fees"]) if v["fees"] else "Not stated as a flat amount (see note)"
         return f+(f'. <span style="color:var(--mute);font-size:13px">{v["nf"]}</span>' if v["nf"] else "")
@@ -531,7 +532,7 @@ def lic_page():
     body = hero("Free guide &middot; pest control licensing","Pest control license requirements by state",
       "What it takes to license a pest control company in 12 big pest-control states: the business license, the certified person who has to qualify it, the experience they need, insurance minimums and the state&rsquo;s own fees. Every row links to the official source.",
       [f"Checked {CHK}","Official sources linked","Fee totals by state","Not legal advice"],
-      [("how","How it works"),("calc","Fees by state"),("table","State table"),("checklist","Checklist"),("software","After licensing"),("faq","FAQ")])
+      [("how","How it works"),("calc","Fees by state"),("table","State table"),("checklist","Checklist"),("software","After licensing"),("faq","FAQ")], ans="In all 12 states we checked, you need a <b>business license</b> for each location and a <b>certified person</b> who qualifies it by passing the state&rsquo;s exams. Most also require 1 to 3 years of experience (3 in Florida, 2 in California, Georgia and North Carolina). Most listed business license fees run $35 to $300.")
     body += f'''<section class="sec" id="how"><div class="w nw"><h2>How pest control licensing works</h2>
 <p>Almost every state licenses two things separately. The <b>business</b> gets a license, registration or charter for each location. A <b>certified person</b> (called a certified operator, qualifying manager, qualifying party or responsible certified applicator, depending on the state) has to be attached to that business and passes the exams. Technicians who do the spraying usually register under that person.</p>
 <p>That&rsquo;s why the experience rule matters most. You can form the company on day one, but in most states it can&rsquo;t work until someone with enough documented field time has passed the exams and is named on the license.</p>
@@ -564,8 +565,8 @@ def about_page():
     return slug, page(slug,title,desc,body,[crumbs("How we compare",slug)])
 
 def index_page():
-    slug="index.html"; title="Software Guides for Pest Control and Hood Cleaning Businesses | Orvian Market"
-    desc=f"Honest, dated software comparisons for small field-service businesses: pest control software, a pricing calculator, state license and pesticide record rules, and hood cleaning guides. Checked {CHK}."
+    slug="index.html"; title="Pest Control and Hood Cleaning Software Guides | Orvian Market"
+    desc="Dated, sourced guides for pest control and hood cleaning businesses: software compared by price, a pricing calculator, and license and record rules by state."
     hubs=[("Pest control","best-pest-control-software.html","Best pest control software for small operators (2026)","GorillaDesk, Pocomos, Jobber, Housecall Pro, QuoteIQ, PestPac, FieldRoutes and Briostack, compared on public pricing."),
           ("Free tool","pest-control-software-pricing-calculator.html","Pest control software pricing calculator","Enter your routes, users and customers to see five vendors&rsquo; list prices side by side."),
           ("Free guide","pesticide-application-records-by-state.html","Pesticide application records by state","Retention periods and required fields for 12 states, with official sources and a printable log."),
